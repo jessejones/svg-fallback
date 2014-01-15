@@ -1,0 +1,28 @@
+# Author        :: Jesse Jones
+# Last Updated  :: 29 December 2013
+# Desc          :: SVG fallback for different use cases in older browser, e.g. < IE 9.
+#
+
+
+# Image fallback for inline SVG files. Modernizer dependency.
+#####################################################################
+
+if (!Modernizer.svg) {
+	var imgs = document.getElementsByTagName('img');
+	var findSVG = /.*\.svg$/;
+	var numImgs = imgs.length;
+	for (var i=0; i != numImgs; i++) {
+		if(imgs[i].src.match(findSVG)) {
+			imgs[i].src = imgs[i].src.slice(0, -3) + 'png';
+		}
+	}
+}
+
+
+# Background SVG Image Fallback for browsers that don't support SVG
+#####################################################################
+
+.divName {
+	background-image: url(image-link.png);
+	background-image: url(image-link.svg);
+}
